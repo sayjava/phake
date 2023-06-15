@@ -1,0 +1,46 @@
+[
+    {
+        "request": {
+            "path": "/user/followers",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200,
+            "headers": {},
+            "template": "users.json.hbs"
+        }
+    },
+    {
+        "request": {
+            "path": "/user/following",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200,
+            "headers": {},
+            "template": "users.json.hbs"
+        }
+    },
+    {
+        "request": {
+            "path": "/user/repos",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200,
+            "headers": {},
+            "template": "{{#repeat 5}} {{> repository}} {{/repeat}}"
+        }
+    },
+    {
+        "request": {
+            "path": "/users/user/repos",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200,
+            "headers": {},
+            "template": "{{#repeat 5}} {{> repository}} {{/repeat}}"
+        }
+    }
+]
