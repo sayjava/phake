@@ -1,0 +1,28 @@
+{
+  "name": "phake-cli",
+  "version": "0.0.0",
+  "description": "The phake cli tool",
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "ts-node src/main.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "handlebars": "^4.7.7",
+    "object-path": "^0.11.8",
+    "yaml": "^2.3.1",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.3.1",
+    "@types/yargs": "^17.0.24",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1"
+  }
+}

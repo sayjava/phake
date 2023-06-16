@@ -1,0 +1,9 @@
+{
+"hello": "{{context.name}}",
+"items": [
+{{#repeat 3}}
+    {{> item }}
+{{/repeat}}
+],
+"money": {{> money}}
+}

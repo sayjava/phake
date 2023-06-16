@@ -1,0 +1,21 @@
+{
+  "name": "phake",
+  "version": "1.0.0",
+  "description": "Phake is a set of tools for generating sample data using handlebars templates",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "lerna": "^7.0.2"
+  }
+}

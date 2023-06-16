@@ -1,0 +1,10 @@
+[
+{{#repeat 5}}
+    {
+    "music": "{{faker "music.songName"}}",
+    "price": "{{faker "commerce.price"}}",
+    "index": "index-{{@index}}",
+    "id": "{{faker "string.alpha" 10}}"
+    }
+{{/repeat}}
+]
