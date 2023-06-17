@@ -1,0 +1,16 @@
+{
+"id": "{{faker 'number.int' 10}}",
+"node_id": "{{faker 'string.alpha' 25}}",
+"name": "{{faker 'word.noun'}}",
+"language": "{{randomize 'javascript' 'ruby' 'golang' 'c++'}}",
+"forks_count": {{faker 'number.int' max=10000}},
+"size": {{faker 'number.float' max=10000 precision=0.2}},
+"default_branch": "{{randomize 'main' 'master'}}",
+"is_template": {{randomize false true}},
+"description": "{{faker 'lorem.sentences' max=3}}",
+"topics": [
+{{#repeat 5}}
+    "{{faker 'string.alpha' 5}}"
+{{/repeat}}
+]
+}

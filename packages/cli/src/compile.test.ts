@@ -1,6 +1,5 @@
 import { readFileSync } from "node:fs";
 import { compile } from "./compile";
-import { Faker } from "@faker-js/faker";
 
 const mockSongName = jest.fn(() => "sample-song");
 const mockPrice = jest.fn(() => 10);

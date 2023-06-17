@@ -1,6 +1,4 @@
 import Handlebars from "handlebars";
-import { en, Faker } from "@faker-js/faker";
-import objectPath from "object-path";
 import "./helpers";
 
 interface GenerateInterface {
@@ -16,3 +14,5 @@ export const compile = (gi: GenerateInterface) => {
     context,
   });
 };
+
+export const registerPartial = Handlebars.registerPartial;
