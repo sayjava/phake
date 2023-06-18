@@ -1,15 +1,20 @@
 {
-  "name": "phake-cli",
+  "name": "@sayjava/phake-cli",
   "version": "0.0.0",
-  "description": "The phake cli tool",
+  "description": "Generate mock data using a cli tool and declarative templates",
   "main": "lib/main.js",
   "scripts": {
     "test": "jest",
     "dev": "ts-node src/main.ts",
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "fakerjs",
+    "handlebars",
+    "mock",
+    "mock data"
+  ],
+  "author": "Raymond Ottun",
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
