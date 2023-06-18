@@ -7,7 +7,15 @@
   "command": {
     "version": {
       "allowBranch": "main",
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "createRelease": "github",
+      "exact": true,
+      "message": "chore(release): %s"
     }
-  }
+  },
+  "ignoreChanges": [
+    "**/fixtures/**",
+    "**/examples/**",
+    "**/*.md"
+  ]
 }
