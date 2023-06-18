@@ -1,6 +1,6 @@
 {
   "name": "@sayjava/phake-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Generate mock data using a cli tool and declarative templates",
   "main": "lib/main.js",
   "bin": {
