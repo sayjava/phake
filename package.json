@@ -1,5 +1,5 @@
 {
-  "name": "phake",
+  "name": "phake-repo",
   "version": "1.0.0",
   "description": "Phake is a set of tools for generating sample data using handlebars templates",
   "private": true,
