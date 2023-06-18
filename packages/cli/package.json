@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Generate mock data using a cli tool and declarative templates",
   "main": "lib/main.js",
+  "bin": {
+    "phake": "lib/main.js"
+  },
   "scripts": {
     "test": "jest",
     "dev": "ts-node src/main.ts",
