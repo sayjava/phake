@@ -4,7 +4,8 @@ const withNextra = require('nextra')({
         appDir: true,
     },
     theme: 'nextra-theme-docs',
-    themeConfig: './theme.config.jsx'
+    themeConfig: './theme.config.jsx',
+    defaultShowCopyCode: true,
 })
 
 module.exports = withNextra()

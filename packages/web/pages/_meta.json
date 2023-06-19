@@ -1,14 +1,39 @@
 {
     "index": {
-        "title": "Homepage",
-        "type": "page"
+        "title": "Introduction",
+        "type": "page",
+        "display": "hidden"
+    },
+    "start": {
+        "title": "Start",
+        "type": "page",
+        "href": "/docs/start"
+    },
+    "editor": {
+        "title": "Generate Data",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "toc": false,
+            "sidebar": false
+        }
     },
     "docs": {
         "title": "Docs",
-        "type": "page"
-    },
-    "github_link": {
-        "title": "phake",
-        "href": "https://github.com/sayjava/phake"
+        "type": "menu",
+        "items": {
+            "start": {
+                "title": "Start",
+                "href": "/docs/start"
+            },
+            "helpers": {
+                "title": "Helpers",
+                "href": "/docs/helpers"
+            },
+            "partials": {
+                "title": "Partials",
+                "href": "/docs/partials"
+            }
+        }
     }
 }

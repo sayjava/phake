@@ -1,0 +1,160 @@
+---
+title: Getting Started
+---
+
+import { Callout } from 'nextra-theme-docs'
+
+# Getting Started
+
+## Installation
+
+```shell
+npm i -g @sayjava/phake-cli
+```
+
+## Usage
+
+```shell
+phake compile -t name-of-template.hbs
+```
+
+## CLI Options
+
+| Flag           | Default | Description                             |
+| -------------- | ------- | --------------------------------------- |
+| -t, --template | -       | file/directory containing `.hbs` files  |
+| -o, --output   | cwd     | The directory to write the output files |
+
+## File naming
+
+`phake` CLI uses the file extensions to name the output of the file that is
+written to the output directory. If not extension is supplied, the output will
+contain no file extension
+
+<Callout emoji="✅">
+ <strong>phake</strong> only recognizes <strong>.hbs</strong> files. All other files are ignored
+</Callout>
+
+Examples
+
+| Input           | Output      |
+| --------------- | ----------- |
+| sample.json.hbs | sample.json |
+| sample.yaml.hbs | sample.yaml |
+| sample.hbs      | sample      |
+
+## Template Reusability With Partials
+
+Phake takes advantage of this system by leveraging a file naming convention. By
+following the convention of naming files as `[name].partial.hbs`, Phake
+automatically recognizes these files as reusable code and allows them to be
+referenced in other templates simply by their name.
+
+This approach streamlines the development process by encouraging the creation of
+reusable partials and making them easily accessible for incorporation into
+various templates. By adopting this convention, developers can efficiently build
+and maintain consistent and modular code structures, ultimately enhancing
+productivity and code maintainability.
+
+<Callout emoji="✅">
+  Partials are not compiled by <strong>phake</strong> but registered as a helper
+</Callout>
+
+### Example
+
+Create a partial template named `user.partial.hbs`. `phake` CLI will register
+this partial as `user`
+
+```json showLineNumbers filename="user.partial.hbs"
+{
+    "userName": "{{faker 'string.alpha' 10}}",
+    "displayName": "{{faker 'person.firstName'}}",
+    "dateOfBirth": "{{faker 'date.birthdate' min=18 max=65 mode='age'}}"
+}
+```
+
+The `user` partial can then be referenced in another partial as follows. This
+template will generate 5 users.
+
+```json showLineNumbers filename="users.json.hbs"
+[
+    {{#repeat 5}}
+        {{> user}}
+    {{/repeat}}
+]
+```
+
+See [Github Examples](https://github/sayjava/phake/examples/github)
+
+## Template Helpers
+
+`phake` supports all
+[Handlebars built in helpers](https://handlebarsjs.com/guide/builtin-helpers.html)
+but it also ships some convenient helpers to help with data generation.
+
+### faker
+
+The faker helper is used to access the FakerJS library. It calls the fakerjs
+library function and passes on the supplied arguments to the fakerJS function
+
+```template
+{{faker 'faker.function' }}
+```
+
+#### Examples
+
+Faker with no parameters
+
+```template
+{{faker 'string.alpha' 10}}
+```
+
+Faker with simple parameters
+
+```template
+{{faker 'person.firstName'}}
+```
+
+Faker with named parameters
+
+```template
+{{faker 'date.birthdate' min=18 max=65 mode='age'}}
+```
+
+### repeat
+
+The repeat helper is useful for repeating a partial or piece of template code
+several times. It generates a comma separated list, thus great for generating
+arrays
+
+```template
+{{#repeat number}}
+    template-code-goes-here
+{{/repeat}}
+```
+
+#### Example
+
+This will generate an array of 5 integers
+
+```template
+[
+    {{#repeat 5}}
+        {{faker 'number.int'}}
+    {{/repeat}}
+]
+```
+
+## randomize
+
+This helper randomizes a list of parameters passed to it
+
+```template
+{{randomize param1 param2  ...}}
+```
+
+#### Example
+
+```template
+{{randomize 'main' 'master'}}
+```

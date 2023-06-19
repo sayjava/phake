@@ -1,5 +1,72 @@
+---
+title: Mock data generator
+description: Generate JSON/Yaml mock data using FakerJS and Handlebars
+---
+
 import { Compile } from '../components/Compile.jsx'
+import { Bleed } from 'nextra-theme-docs'
 
-# Template Compiler
+<h1 className="text-8xl tracking-tighter font-extrabold mt-8">Phake</h1>
+<p className="text-2xl my-4 text-gray-600">Generate mock data using Handlebars templates and FakerJS</p>
+<a href="/editor" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-full mt-4 inline-block">Try it online →</a>
+## Features
 
-<Compile />
+- Declarative templating with [Handlebars](https://handlebarsjs.com)
+- Seamless integration with [Faker.js](https://fakerjs.dev)
+- Command-line simplicity (Versionable Templates)
+- Can be integrated in the dev process
+- DRY templates. Reuse pieces of templates in other templates
+- Custom handlebar helpers
+
+## Quick Start
+
+Here is a sample template showcasing the integration of FakerJS and Handlebars to declare a data template
+```json copy showLineNumbers filename="sample.json.hbs"
+ {
+    "id": {{faker 'number.int' 10}},
+    "node_id": "{{faker 'string.alpha' 25}}",
+    "name": "{{faker 'word.noun'}}",
+    "language": "{{randomize 'javascript' 'ruby' 'golang' 'c++'}}",
+    "forks_count": {{faker 'number.int' max=10000}},
+    "size": {{faker 'number.float' max=10000 precision=0.2}},
+    "default_branch": "{{randomize 'main' 'master'}}",
+    "open_issues_count": {{faker 'number.int' max=50}},
+    "is_template": {{randomize false true}},
+    "description": "{{faker 'lorem.sentences' max=3}}",
+   "topics": [
+        {{#repeat 5}}
+            "{{faker 'string.alpha' 5}}"
+        {{/repeat}}
+    ]
+}
+```
+Run the `phake-cli` command to compile the template
+```shell
+    npx @sayjava/phake-cli compile -t sample.json.hbs
+```
+
+will generate a file named after the input template with the sample data
+
+```json showLineNumbers filename="sample.json"
+{
+    "id": 7,
+    "node_id": "HSUWMxwXsVKxycdaVOiJFnlNe",
+    "name": "factory",
+    "language": "javascript",
+    "forks_count": 4558,
+    "size": 8800,
+    "default_branch": "master",
+    "open_issues_count": 9,
+    "is_template": true,
+    "description": "Aliquam sunt eveniet quam",
+    "topics": [
+        "UiqiJ",
+        "GdyVl",
+        "LUiDO",
+        "QEHha",
+        "Ksvjv"
+    ]
+}
+```
+
+<a href="/editor" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-full mt-4 inline-block">Try it online →</a>
