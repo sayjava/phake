@@ -1,24 +1,36 @@
 {
-  "name": "phake-repo",
-  "version": "1.0.0",
-  "description": "Phake is a set of tools for generating sample data using handlebars templates",
-  "private": true,
-  "directories": {
-    "example": "examples"
+  "name": "@sayjava/phake-cli",
+  "version": "0.1.1",
+  "description": "Generate mock data using a cli tool and declarative templates",
+  "main": "lib/main.js",
+  "bin": {
+    "phake": "lib/main.js"
   },
   "scripts": {
-    "release": "lerna publish --no-private",
-    "prerelease": "npm run build",
-    "build": "lerna run build",
-    "test": "lerna run test"
+    "test": "jest",
+    "dev": "ts-node src/main.ts",
+    "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "workspaces": [
-    "packages/*"
+  "keywords": [
+    "fakerjs",
+    "handlebars",
+    "mock",
+    "mock data"
   ],
+  "author": "Raymond Ottun",
+  "license": "ISC",
   "dependencies": {
-    "lerna": "^7.0.2"
+    "@faker-js/faker": "^8.0.2",
+    "handlebars": "^4.7.7",
+    "object-path": "^0.11.8",
+    "yaml": "^2.3.1",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.3.1",
+    "@types/yargs": "^17.0.24",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1"
   }
 }
