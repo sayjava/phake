@@ -4,11 +4,6 @@
         "type": "page",
         "display": "hidden"
     },
-    "start": {
-        "title": "Start",
-        "type": "page",
-        "href": "/docs/start"
-    },
     "editor": {
         "title": "Generate Data",
         "type": "page",
@@ -16,24 +11,6 @@
             "layout": "full",
             "toc": false,
             "sidebar": false
-        }
-    },
-    "docs": {
-        "title": "Docs",
-        "type": "menu",
-        "items": {
-            "start": {
-                "title": "Start",
-                "href": "/docs/start"
-            },
-            "helpers": {
-                "title": "Helpers",
-                "href": "/docs/helpers"
-            },
-            "partials": {
-                "title": "Partials",
-                "href": "/docs/partials"
-            }
         }
     }
 }
