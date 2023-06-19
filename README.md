@@ -1,5 +1,5 @@
 <h1 align="center">Phake</h1>
-<p align="center">The quickest way to generate sample data for development purposes</p>
+<p align="center">Effortlessly Generate Realistic Mock Data with Ease</p>
 <div align="center"><a href="https://phake.dev">Try it online</a></div>
 
 ## Features
