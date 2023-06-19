@@ -5,9 +5,9 @@ import { writeTemplateOutputToFile } from "../fs";
 import { ArgumentsCamelCase } from "yargs";
 import { registerFilePartials } from "../partials";
 
-export const generateFromFile = ({ filePath, output }) => {
+export const generateFromFile = ({ filePath, output, locale }) => {
   const template = fs.readFileSync(filePath, "utf-8");
-  const content = compile({ template });
+  const content = compile({ template, locale });
   if (output) {
     const outputFile = writeTemplateOutputToFile({
       content,
@@ -23,7 +23,7 @@ export const generateFromFile = ({ filePath, output }) => {
   return console.log(content);
 };
 
-export const generateFromFolder = ({ directory, output }) => {
+export const generateFromFolder = ({ directory, output, locale }) => {
   const entries = fs.readdirSync(directory).filter((entry) =>
     !entry.includes(".partial") && entry.includes(".hbs")
   );
@@ -32,28 +32,28 @@ export const generateFromFolder = ({ directory, output }) => {
     const filePath = path.join(directory, entry);
 
     if (fs.statSync(filePath).isDirectory()) {
-      generateFromFolder({ directory: filePath, output });
+      generateFromFolder({ directory: filePath, output, locale });
     } else {
-      generateFromFile({ filePath, output });
+      generateFromFile({ filePath, output, locale });
     }
   }
 };
 
 export const generate = (
   argv: ArgumentsCamelCase<
-    { template: string; output: string }
+    { template: string; output: string; locale: string }
   >,
 ) => {
-  const { template, output } = argv;
+  const { template, output, locale } = argv;
   try {
     if (fs.statSync(template).isFile()) {
       registerFilePartials(path.dirname(template));
-      return generateFromFile({ filePath: template, output });
+      return generateFromFile({ filePath: template, output, locale });
     }
 
     if (fs.statSync(template).isDirectory()) {
       registerFilePartials(template);
-      return generateFromFolder({ directory: template, output });
+      return generateFromFolder({ directory: template, output, locale });
     }
   } catch (error) {
     if (error.code === "ENOENT") {

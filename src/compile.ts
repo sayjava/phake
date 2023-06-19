@@ -1,15 +1,17 @@
 import Handlebars from "handlebars";
-import "./helpers";
+import { createHelpers } from "./helpers";
 
 interface GenerateInterface {
   template: string;
+  locale?: string;
   context?: {
     [key: string]: any;
   };
 }
 
 export const compile = (gi: GenerateInterface) => {
-  const { template, context = {} } = gi;
+  const { template, locale = "en", context = {} } = gi;
+  createHelpers({ locale });
   return Handlebars.compile(template, { compat: true, preventIndent: false })({
     context,
   });

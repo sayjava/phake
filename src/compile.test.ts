@@ -7,6 +7,7 @@ const mockAlpha = jest.fn(() => "abcd");
 
 jest.mock("@faker-js/faker", () => {
   return {
+    en: [],
     Faker: jest.fn(() => {
       return {
         music: { songName: mockSongName },

@@ -24,6 +24,13 @@ import { generate } from "./cmds/generate";
               default: ".",
               describe: "The directory to write the output",
             },
+            locale: {
+              type: "string",
+              alias: "l",
+              default: "en",
+              describe:
+                "The locale that is passed on to FakerJS for data generation",
+            },
           },
         );
       },

@@ -4,6 +4,7 @@ import { registerFilePartials } from "./partials";
 
 jest.mock("@faker-js/faker", () => {
   return {
+    en: [],
     Faker: jest.fn(() => {
       return {
         company: { name: () => "sample-company" },
