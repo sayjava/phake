@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Editor from '@monaco-editor/react';
+import { compile } from '@sayjava/phake-cli/lib/compile'
 
 function debounce(func, delay) {
     let timeoutId;
@@ -38,23 +39,13 @@ export const Compile = () => {
     `
 
     const [content, setContent] = useState('')
-
-    const doCompile = async (template) => {
-        fetch('/api/compile', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ template })
-        })
-            .then(res => res.json())
-            .then(({ content: parsedContent }) => {
-                try {
-                    setContent(JSON.stringify(JSON.parse(parsedContent), null, 2))
-                } catch (error) {
-                    setContent(error.toString())
-                }
-            })
+    const doCompile = (template) => {
+        try {
+            const newContent = JSON.parse(compile({ template }))
+            setContent(JSON.stringify(newContent, null, 2))
+        } catch (error) {
+            setContent(error.toString())
+        }
     }
 
     useEffect(() => {
