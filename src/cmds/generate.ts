@@ -11,7 +11,7 @@ export const generateFromFile = ({ filePath, output }) => {
   if (output) {
     const outputFile = writeTemplateOutputToFile({
       content,
-      outPutDir: output,
+      outPutDir: path.resolve(output),
       templatePath: filePath,
     });
 

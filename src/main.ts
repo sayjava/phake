@@ -21,6 +21,7 @@ import { generate } from "./cmds/generate";
             output: {
               type: "string",
               alias: "o",
+              default: ".",
               describe: "The directory to write the output",
             },
           },
