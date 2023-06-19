@@ -3,12 +3,13 @@ import { en, Faker } from "@faker-js/faker";
 import objectPath from "object-path";
 
 Handlebars.registerHelper("repeat", function (count: number, options: any) {
+  const MAX_COUNT = 100000;
   if (Number.isNaN(count)) {
     throw new Error("Each section requires a number");
   }
 
   const list: string[] = [];
-  for (let index = 0; index < count; index++) {
+  for (let index = 0; index < Math.min(count, MAX_COUNT); index++) {
     // @ts-ignore
     list.push(options.fn(this, { data: { index } }));
   }
