@@ -1,6 +1,6 @@
 {
   "name": "@sayjava/phake-cli",
-  "version": "0.1.2",
+  "version": "0.0.5",
   "description": "Effortlessly Generate Realistic Mock Data with Ease using Handlebars and Fakerjs",
   "main": "lib/main.js",
   "files": [
@@ -32,6 +32,10 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^10.0.4",
+    "@semantic-release/release-notes-generator": "^11.0.3",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
     "@types/yargs": "^17.0.24",
@@ -47,8 +51,16 @@
     "access": "public"
   },
   "release": {
+    "ci": false,
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
     "branches": [
       "main"
-    ]
+    ],
+    "githubUrl": "https://github.com/sayjava/phake"
   }
 }
