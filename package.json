@@ -1,6 +1,6 @@
 {
   "name": "@sayjava/phake-cli",
-  "version": "0.1.1",
+  "version": "0.0.0-development",
   "description": "Generate mock data using a cli tool and declarative templates",
   "main": "lib/main.js",
   "bin": {
@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest",
     "dev": "ts-node src/main.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "fakerjs",
@@ -30,7 +31,15 @@
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
     "@types/yargs": "^17.0.24",
+    "semantic-release": "^21.0.5",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sayjava/phake.git"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
