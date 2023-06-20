@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "node server.js"
+    "start": "node server.js",
+    "deploy": "firebase deploy"
   },
   "keywords": [],
   "author": "Raymond Ottun",

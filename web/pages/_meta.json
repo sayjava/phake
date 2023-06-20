@@ -12,5 +12,11 @@
             "toc": false,
             "sidebar": false
         }
+    },
+    "github_link": {
+        "title": "Docs",
+        "newWindow": true,
+        "href": "https://github.com/sayjava/phake",
+        "type": "page"
     }
 }

@@ -22,5 +22,16 @@ export default {
                 <meta name="description" content={frontMatter.description || ''} />
             </>
         )
+    },
+    footer: {
+        text: (
+            <span>
+                MIT {new Date().getFullYear()} ©{' '}
+                <a href="https://github.com/sayjava/phake" target="_blank">
+                    Phake
+                </a>
+                .
+            </span>
+        )
     }
 }
