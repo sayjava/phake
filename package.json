@@ -34,6 +34,7 @@
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.0.3",
     "@semantic-release/npm": "^10.0.4",
     "@semantic-release/release-notes-generator": "^11.0.3",
     "@types/jest": "^29.5.2",
@@ -56,11 +57,13 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
-      "@semantic-release/git"
+      "@semantic-release/git",
+      [
+        "@semantic-release/github"
+      ]
     ],
     "branches": [
       "main"
-    ],
-    "githubUrl": "https://github.com/sayjava/phake"
+    ]
   }
 }
