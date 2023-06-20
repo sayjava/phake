@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "description": "Generate mock data using a cli tool and declarative templates",
   "main": "lib/main.js",
+  "private": "false",
   "files": [
     "lib"
   ],
