@@ -1,15 +1,20 @@
 <h1 align="center">Phake</h1>
-<p align="center">Effortlessly Generate Realistic Mock Data with Ease</p>
-<div align="center"><a href="https://phake.dev">Try it online</a></div>
+<p align="center">Effortlessly Generate Realistic Mock Data with Ease using Handlebars and Fakerjs</p>
+<div align="center"><a href="https://phake-d4468.web.app/editor">Try it online</a></div>
 
 ## Features
 
-- Declarative templates with [Handlebars](https://handlebarsjs.com)
-- Seamless integration with [Faker.js](https://fakerjs.dev)
-- Command-line simplicity
-- Can be integrated in the dev process
-- DRY templates. Reuse pieces of templates in other templates
-- Custom handlebar helpers
+- Utilize the power of declarative templates using
+  [Handlebars](https://handlebarsjs.com).
+- Seamlessly integrate with [Faker.js](https://fakerjs.dev) for generating
+  realistic and randomized data.
+- Enjoy the simplicity of a command-line interface for streamlined usage.
+- Incorporate the tool into your development process and easily version your
+  templates.
+- Promote code reuse and maintainability by creating DRY (Don't Repeat Yourself)
+  templates, allowing you to reuse template sections across multiple templates.
+- Leverage custom Handlebars helpers to simplify data creation and manipulation,
+  further enhancing the flexibility and functionality of your templates.
 
 ## Quick Start
 
@@ -27,7 +32,7 @@ Create a template file named `sample.json.hbs` with the following content
     "open_issues_count": {{faker 'number.int' max=50}},
     "is_template": {{randomize false true}},
     "description": "{{faker 'lorem.sentences' max=3}}",
-   "topics": [
+    "topics": [
         {{#repeat 5}}
             "{{faker 'string.alpha' 5}}"
         {{/repeat}}
@@ -84,11 +89,21 @@ npm i -g @sayjava/phake-cli
 | -t, --template | -       | file/directory containing `.hbs` files  |
 | -o, --output   | cwd     | The directory to write the output files |
 
-### File naming
+## File Naming
 
-`phake` CLI uses the file extensions to name the output of the file that is
-written to the output directory. If not extension is supplied, the output will
-contain no file extension
+Improve the functionality of the `phake` CLI with the following enhancements:
+
+- The `phake` CLI now intelligently uses file extensions to name the output
+  files that are written to the output directory.
+- If no file extension is supplied, the output file will still be created but
+  without any file extension.
+- This flexible approach allows you to specify the desired file extension for
+  the output, providing compatibility with various file formats and ensuring
+  clarity in file naming.
+- You can now generate output files with the appropriate extensions, making it
+  easier to identify and work with the generated files.
+- This enhancement adds versatility to the `phake` CLI, catering to a wider
+  range of use cases and preferences.
 
 Examples
 
@@ -123,14 +138,20 @@ will create `[name].json`
 phake -t dir/containing/single.json.hbs -o folder/to/write/output
 ```
 
-## DRY Templates With Handlebar's Partials
+## DRY Templates with Handlebar's Partials
 
-Pieces of templates can be reused easily by naming them as `[name].partial.hbs`.
-Partial files are not compiled but registered as Handlebar partials to be
-referenced from other template files
+- Enable easy reuse of template sections by naming them as `[name].partial.hbs`.
+- Partial files are not compiled individually but instead registered as
+  Handlebar partials. This allows them to be referenced and included within
+  other template files seamlessly.
+- By adopting this approach, you can efficiently organize and manage your
+  templates, promoting modular and reusable code.
+- The registration of partials ensures that changes made to a partial file
+  reflect automatically across all templates that reference it.
+- This method of partial registration enhances maintainability and reduces
+  duplication of code within your project.
 
-Here is an example of a partial file named `item.partial.hbs` containing the
-following text.
+Example
 
 ```hbs
 {

@@ -1,9 +1,8 @@
 {
   "name": "@sayjava/phake-cli",
   "version": "0.1.2",
-  "description": "Generate mock data using a cli tool and declarative templates",
+  "description": "Effortlessly Generate Realistic Mock Data with Ease using Handlebars and Fakerjs",
   "main": "lib/main.js",
-  "private": "false",
   "files": [
     "lib"
   ],
@@ -34,7 +33,6 @@
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
     "@types/yargs": "^17.0.24",
-    "semantic-release": "^21.0.5",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1"
   },
@@ -43,7 +41,7 @@
     "url": "https://github.com/sayjava/phake.git"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "release": {
     "branches": [
