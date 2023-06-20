@@ -20,7 +20,7 @@
 
 Create a template file named `sample.json.hbs` with the following content
 
-```json filename="sample.json.hbs"
+```template filename="sample.json.hbs"
  {
     "id": {{faker 'number.int' 10}},
     "node_id": "{{faker 'string.alpha' 25}}",
