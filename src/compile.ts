@@ -1,20 +1,20 @@
-import Handlebars from "handlebars";
-import { createHelpers } from "./helpers";
+import Handlebars from 'handlebars'
+import { createHelpers } from './helpers'
 
 interface GenerateInterface {
-  template: string;
-  locale?: string;
+  template: string
+  locale?: string
   context?: {
-    [key: string]: any;
-  };
+    [key: string]: any
+  }
 }
 
-export const compile = (gi: GenerateInterface) => {
-  const { template, locale = "en", context = {} } = gi;
-  createHelpers({ locale });
+export const compile = (gi: GenerateInterface): string => {
+  const { template, locale = 'en', context = {} } = gi
+  createHelpers({ locale })
   return Handlebars.compile(template, { compat: true, preventIndent: false })({
-    context,
-  });
-};
+    context
+  })
+}
 
-export const registerPartial = Handlebars.registerPartial;
+export const registerPartial = Handlebars.registerPartial

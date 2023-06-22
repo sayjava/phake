@@ -9,6 +9,7 @@ beforeEach(() => {
 
 test("save template with extension file name", () => {
   writeTemplateOutputToFile({
+    outPutDir: "/dir/to",
     content: "template output",
     templatePath: "/dir/to/template.json.hbs",
   });

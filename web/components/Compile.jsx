@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react"
-import Editor from '@monaco-editor/react';
+import { useEffect, useState } from 'react'
+import Editor from '@monaco-editor/react'
 import { compile } from '@sayjava/phake-cli/lib/compile'
 
-function debounce(func, delay) {
-    let timeoutId;
+function debounce (func, delay) {
+  let timeoutId
 
-    return function () {
-        const context = this;
-        const args = arguments;
+  return function () {
+    const context = this
+    const args = arguments
 
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(function () {
-            func.apply(context, args);
-        }, delay);
-    };
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(function () {
+      func.apply(context, args)
+    }, delay)
+  }
 }
 
 export const Compile = () => {
-
-    const initialContent = `
+  const initialContent = `
 {
     "id": {{faker 'number.int' 10}},
     "node_id": "{{faker 'string.alpha' 25}}",
@@ -38,35 +37,39 @@ export const Compile = () => {
 }
     `
 
-    const [content, setContent] = useState('')
-    const doCompile = (template) => {
-        try {
-            const newContent = JSON.parse(compile({ template }))
-            setContent(JSON.stringify(newContent, null, 2))
-        } catch (error) {
-            setContent(error.toString())
-        }
+  const [content, setContent] = useState('')
+  const doCompile = (template) => {
+    try {
+      const newContent = JSON.parse(compile({ template }))
+      setContent(JSON.stringify(newContent, null, 2))
+    } catch (error) {
+      setContent(error.toString())
     }
+  }
 
-    useEffect(() => {
-        doCompile(initialContent)
-    }, [])
+  useEffect(() => {
+    doCompile(initialContent)
+  }, [])
 
-    const handleChange = debounce(doCompile, 500)
+  const handleChange = debounce(doCompile, 500)
 
-    return <div className="w-full">
-        <div style={{ display: "flex" }}>
-            <Editor height="70vh" theme="vs-dark"
-                options={{ minimap: { enabled: false }, readOnly: false }}
-                language="json"
-                defaultValue={initialContent}
-                onChange={handleChange}
-            />
-            <Editor height="70vh" theme="vs-dark"
-                options={{ minimap: { enabled: false }, readOnly: true }}
-                language="json"
-                value={content}
-            />
-        </div>
+  return (
+    <div className='w-full'>
+      <div style={{ display: 'flex' }}>
+        <Editor
+          height='70vh' theme='vs-dark'
+          options={{ minimap: { enabled: false }, readOnly: false }}
+          language='json'
+          defaultValue={initialContent}
+          onChange={handleChange}
+        />
+        <Editor
+          height='70vh' theme='vs-dark'
+          options={{ minimap: { enabled: false }, readOnly: true }}
+          language='json'
+          value={content}
+        />
+      </div>
     </div>
+  )
 }

@@ -1,39 +1,35 @@
-import fs from "node:fs";
-import Handlebars from "handlebars";
-import path from "node:path";
+import fs from 'node:fs'
+import Handlebars from 'handlebars'
+import path from 'node:path'
 
-const registerPartial = (entry: string) => {
+const registerPartial = (entry: string): void => {
   try {
-    const { name } = path.parse(entry);
-    const [partialName] = name.split(".partial");
+    const { name } = path.parse(entry)
+    const [partialName] = name.split('.partial')
     Handlebars.registerPartial(
       partialName,
-      fs.readFileSync(entry, "utf-8"),
-    );
+      fs.readFileSync(entry, 'utf-8')
+    )
   } catch (error) {
-    console.error(`Error registering ${entry} as partial`);
+    console.error(`Error registering ${entry} as partial`)
   }
-};
+}
 
-export const registerFilePartials = (partialsPath: string) => {
+export const registerFilePartials = (partialsPath: string): void => {
   try {
-    if (!fs.existsSync(partialsPath)) {
-      console.warn(`Partials directory ${partialsPath} not found`);
-      return false;
-    }
     const entries = fs
       .readdirSync(partialsPath)
-      .filter((entry) => entry.includes(".partial"));
+      .filter((entry) => entry.includes('.partial'))
 
     for (const entry of entries) {
-      const fullPath = path.join(partialsPath, entry);
+      const fullPath = path.join(partialsPath, entry)
       if (!fs.statSync(fullPath).isDirectory()) {
-        registerPartial(fullPath);
+        registerPartial(fullPath)
       } else {
-        registerFilePartials(fullPath);
+        registerFilePartials(fullPath)
       }
     }
   } catch (error) {
-    console.warn(error.message);
+    console.warn(error.message)
   }
-};
+}
