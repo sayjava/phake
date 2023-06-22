@@ -1,8 +1,10 @@
 import Handlebars from 'handlebars'
 import * as allFaker from '@faker-js/faker'
 import objectPath from 'object-path'
+import extraHelpers from 'handlebars-helpers'
 
 export const createHelpers = ({ locale }: { locale: string }): void => {
+  extraHelpers()
   Handlebars.registerHelper('repeat', function (count: number, options: any) {
     const MAX_COUNT = 100000
     if (Number.isNaN(count)) {
@@ -65,3 +67,5 @@ export const createHelpers = ({ locale }: { locale: string }): void => {
     }
   })
 }
+
+export const registerHelper = Handlebars.registerHelper
