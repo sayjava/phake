@@ -1,30 +1,30 @@
-import { Faker } from "@faker-js/faker";
-import { compile } from "./compile";
-import { registerFilePartials } from "./partials";
+import { Faker } from '@faker-js/faker'
+import { compile } from './compile'
+import { registerFilePartials } from './partials'
 
-jest.mock("@faker-js/faker", () => {
+jest.mock('@faker-js/faker', () => {
   return {
     en: [],
     Faker: jest.fn(() => {
       return {
-        company: { name: () => "sample-company" },
-        commerce: { price: () => 10.00 },
-      };
-    }),
-  };
-});
+        company: { name: () => 'sample-company' },
+        commerce: { price: () => 10.0 }
+      }
+    })
+  }
+})
 
-test("renders simple partial", () => {
+test('renders simple partial', () => {
   const template = `
     [
       {{# repeat 2}}
           {{> item}}
       {{/repeat}}
     ]
-  `;
-  registerFilePartials("./fixtures");
-  const result = compile({ template });
-  const json = JSON.parse(result);
+  `
+  registerFilePartials('./fixtures')
+  const result = compile({ template })
+  const json = JSON.parse(result)
   expect(json).toMatchInlineSnapshot(`
 [
   {
@@ -36,16 +36,16 @@ test("renders simple partial", () => {
     "title": "sample-company",
   },
 ]
-`);
-});
+`)
+})
 
-test("renders recursive partials", () => {
-  const template = "{{> items}}";
+test('renders recursive partials', () => {
+  const template = '{{> items}}'
   const result = compile({
     template,
-    context: { name: "foo bar ltd" },
-  });
-  const json = JSON.parse(result);
+    context: { name: 'foo bar ltd' }
+  })
+  const json = JSON.parse(result)
   expect(json).toMatchInlineSnapshot(`
 {
   "hello": "foo bar ltd",
@@ -67,5 +67,5 @@ test("renders recursive partials", () => {
     "amount": "10",
   },
 }
-`);
-});
+`)
+})

@@ -6,10 +6,7 @@ const registerPartial = (entry: string): void => {
   try {
     const { name } = path.parse(entry)
     const [partialName] = name.split('.partial')
-    Handlebars.registerPartial(
-      partialName,
-      fs.readFileSync(entry, 'utf-8')
-    )
+    Handlebars.registerPartial(partialName, fs.readFileSync(entry, 'utf-8'))
   } catch (error) {
     console.error(`Error registering ${entry} as partial`)
   }

@@ -7,9 +7,11 @@ interface TemplateOutput {
   content: string
 }
 
-export const writeTemplateOutputToFile = (
-  { content, outPutDir, templatePath }: TemplateOutput
-): string => {
+export const writeTemplateOutputToFile = ({
+  content,
+  outPutDir,
+  templatePath
+}: TemplateOutput): string => {
   const filePath = path.basename(templatePath)
   const [outPutName] = filePath.split(path.extname(filePath))
 

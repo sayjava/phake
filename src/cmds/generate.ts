@@ -20,9 +20,9 @@ export const generateFromFile = ({ filePath, output, locale }): void => {
 }
 
 export const generateFromFolder = ({ directory, output, locale }): void => {
-  const entries = fs.readdirSync(directory).filter((entry) =>
-    !entry.includes('.partial') && entry.includes('.hbs')
-  )
+  const entries = fs
+    .readdirSync(directory)
+    .filter((entry) => !entry.includes('.partial') && entry.includes('.hbs'))
 
   for (const entry of entries) {
     const filePath = path.join(directory, entry)
@@ -36,9 +36,7 @@ export const generateFromFolder = ({ directory, output, locale }): void => {
 }
 
 export const generate = (
-  argv: ArgumentsCamelCase<
-  { template: string, output: string, locale: string }
-  >
+  argv: ArgumentsCamelCase<{ template: string, output: string, locale: string }>
 ): void => {
   const { template, output, locale } = argv
   try {

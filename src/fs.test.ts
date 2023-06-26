@@ -1,47 +1,47 @@
-import fs from "node:fs";
-import { writeTemplateOutputToFile } from "./fs";
+import fs from 'node:fs'
+import { writeTemplateOutputToFile } from './fs'
 
-jest.mock("node:fs");
+jest.mock('node:fs')
 
 beforeEach(() => {
-  fs.writeFileSync = jest.fn();
-});
+  fs.writeFileSync = jest.fn()
+})
 
-test("save template with extension file name", () => {
+test('save template with extension file name', () => {
   writeTemplateOutputToFile({
-    outPutDir: "/dir/to",
-    content: "template output",
-    templatePath: "/dir/to/template.json.hbs",
-  });
+    outPutDir: '/dir/to',
+    content: 'template output',
+    templatePath: '/dir/to/template.json.hbs'
+  })
 
   expect(fs.writeFileSync).toHaveBeenCalledWith(
-    "/dir/to/template.json",
-    "template output",
-  );
-});
+    '/dir/to/template.json',
+    'template output'
+  )
+})
 
-test("save template with extension file name to specified directory", () => {
+test('save template with extension file name to specified directory', () => {
   writeTemplateOutputToFile({
-    content: "template output",
-    outPutDir: "/output/dir",
-    templatePath: "/dir/to/template.json.hbs",
-  });
+    content: 'template output',
+    outPutDir: '/output/dir',
+    templatePath: '/dir/to/template.json.hbs'
+  })
 
   expect(fs.writeFileSync).toHaveBeenCalledWith(
-    "/output/dir/template.json",
-    "template output",
-  );
-});
+    '/output/dir/template.json',
+    'template output'
+  )
+})
 
-test("save template with no double extension", () => {
+test('save template with no double extension', () => {
   writeTemplateOutputToFile({
-    content: "template output",
-    outPutDir: "/output/dir",
-    templatePath: "/dir/to/template.hbs",
-  });
+    content: 'template output',
+    outPutDir: '/output/dir',
+    templatePath: '/dir/to/template.hbs'
+  })
 
   expect(fs.writeFileSync).toHaveBeenCalledWith(
-    "/output/dir/template",
-    "template output",
-  );
-});
+    '/output/dir/template',
+    'template output'
+  )
+})

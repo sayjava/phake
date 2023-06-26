@@ -1,34 +1,34 @@
-import { readFileSync } from "node:fs";
-import { compile } from "./compile";
+import { readFileSync } from 'node:fs'
+import { compile } from './compile'
 
-const mockSongName = jest.fn(() => "sample-song");
-const mockPrice = jest.fn(() => 10);
-const mockAlpha = jest.fn(() => "abcd");
+const mockSongName = jest.fn(() => 'sample-song')
+const mockPrice = jest.fn(() => 10)
+const mockAlpha = jest.fn(() => 'abcd')
 
-jest.mock("@faker-js/faker", () => {
+jest.mock('@faker-js/faker', () => {
   return {
     en: [],
     Faker: jest.fn(() => {
       return {
         music: { songName: mockSongName },
         commerce: { price: mockPrice },
-        string: { alpha: mockAlpha },
-      };
-    }),
-  };
-});
+        string: { alpha: mockAlpha }
+      }
+    })
+  }
+})
 
-test("context data", () => {
+test('context data', () => {
   const result = compile({
-    template: "Hello {{context.foo}}",
-    context: { foo: "foo-bar" },
-  });
-  expect(result).toMatchInlineSnapshot(`"Hello foo-bar"`);
-});
+    template: 'Hello {{context.foo}}',
+    context: { foo: 'foo-bar' }
+  })
+  expect(result).toMatchInlineSnapshot(`"Hello foo-bar"`)
+})
 
-test("repeat helper", () => {
-  const template = readFileSync("fixtures/music.json.hbs", "utf-8");
-  const result = compile({ template });
+test('repeat helper', () => {
+  const template = readFileSync('fixtures/music.json.hbs', 'utf-8')
+  const result = compile({ template })
   expect(result).toMatchInlineSnapshot(`
 "[
     {
@@ -62,17 +62,17 @@ test("repeat helper", () => {
     "id": "abcd"
     }
 ]"
-`);
-});
+`)
+})
 
-test("single parameter passed to faker function", () => {
-  const result = compile({ template: "{{faker 'string.alpha' 20}}" });
-  expect(mockAlpha).toHaveBeenCalledWith(20);
-});
+test('single parameter passed to faker function', () => {
+  const result = compile({ template: "{{faker 'string.alpha' 20}}" })
+  expect(mockAlpha).toHaveBeenCalledWith(20)
+})
 
-test("hash parameter passed to faker function", () => {
+test('hash parameter passed to faker function', () => {
   const result = compile({
-    template: "{{faker 'commerce.price' min=20 max=50}}",
-  });
-  expect(mockPrice).toHaveBeenCalledWith({ "max": 50, "min": 20 });
-});
+    template: "{{faker 'commerce.price' min=20 max=50}}"
+  })
+  expect(mockPrice).toHaveBeenCalledWith({ max: 50, min: 20 })
+})

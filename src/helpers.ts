@@ -39,9 +39,8 @@ export const createHelpers = ({ locale }: { locale: string }): void => {
       throw new Error(`${locale} is not supported by FakerJS`)
     }
 
-    const fakerLocale = locale === 'en'
-      ? allFaker.en
-      : [suppliedLocale, allFaker.en]
+    const fakerLocale =
+      locale === 'en' ? allFaker.en : [suppliedLocale, allFaker.en]
     const fake = new allFaker.Faker({ locale: fakerLocale })
     const fakeFunc = objectPath.get(fake, type)
     const [{ hash }, ...params] = rest.concat().reverse()
@@ -59,8 +58,7 @@ export const createHelpers = ({ locale }: { locale: string }): void => {
 
   Handlebars.registerHelper('helperMissing', function (...args: any[]): string {
     try {
-      const [{ name }] = args.concat()
-        .reverse()
+      const [{ name }] = args.concat().reverse()
       return `${String(name)} helper is not available`
     } catch (error) {
       return error.message
