@@ -45,7 +45,7 @@ export const Compile = () => {
 
   return (
     <div className='w-full'>
-      <div style={{ display: "flex", padding: "10px 0", gap: "10px" }}>
+      <div className='flex space-x-4'>
         <div>
           <label htmlFor="examples">Example Templates</label>
         </div>
@@ -59,11 +59,10 @@ export const Compile = () => {
             }
           </select>
         </div>
-
       </div>
-      <div style={{ display: 'flex', gap: "10px" }}>
-        <div style={{ flex: 1 }}>
-          <h3 style={{ padding: "8px 0" }}>Template</h3>
+      <div className='md:flex space-x-4'>
+        <div className='flex-1'>
+          <h3 className='text-2xl my-4'>Template</h3>
           <Editor
             height='70vh' theme='vs-dark'
             options={{ minimap: { enabled: false }, readOnly: false }}
@@ -72,9 +71,8 @@ export const Compile = () => {
             onChange={handleChange}
           />
         </div>
-
-        <div style={{ flex: 1 }}>
-          <h3 style={{ padding: "8px 0" }}>Result</h3>
+        <div className='flex-1'>
+          <h3 className='text-2xl my-4'>Result</h3>
           <Editor
             height='70vh' theme='vs-dark'
             options={{ minimap: { enabled: false }, readOnly: true, formatOnPaste: true, formatOnType: true, renderControlCharacters: false, renderWhitespace: 'none', renderFinalNewline: true, renderIndentGuides: true, renderLineHighlight: 'none', renderLineNumbers: 'off', renderValidationDecorations: 'off', scrollBeyondLastLine: false, wordWrap: 'on' }}
@@ -82,7 +80,6 @@ export const Compile = () => {
             value={content}
           />
         </div>
-
       </div>
     </div>
   )

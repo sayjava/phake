@@ -13,7 +13,7 @@
   "author": "Raymond Ottun",
   "dependencies": {
     "@monaco-editor/react": "^4.5.1",
-    "@sayjava/phake-cli": "^1.0.0",
+    "@sayjava/phake-cli": "^1.1.0",
     "next": "^13.4.6"
   },
   "devDependencies": {
