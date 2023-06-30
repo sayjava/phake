@@ -1,10 +1,8 @@
 import Handlebars from 'handlebars'
 import * as allFaker from '@faker-js/faker'
 import objectPath from 'object-path'
-import extraHelpers from 'handlebars-helpers'
 
 export const createHelpers = ({ locale }: { locale: string }): void => {
-  extraHelpers()
   Handlebars.registerHelper('repeat', function (count: number, options: any) {
     const MAX_COUNT = 100000
     if (Number.isNaN(count)) {
@@ -56,14 +54,41 @@ export const createHelpers = ({ locale }: { locale: string }): void => {
     return `fakerjs does not support ${String(type)}`
   })
 
-  Handlebars.registerHelper('helperMissing', function (...args: any[]): string {
-    try {
-      const [{ name }] = args.concat().reverse()
-      return `${String(name)} helper is not available`
-    } catch (error) {
-      return error.message
+  Handlebars.registerHelper('for', function (from: any, to: any) {
+    const options = arguments[arguments.length - 1]
+    const maxIterations = 100
+    let output = ''
+
+    if (Number.isNaN(parseInt(from, 10)) || Number.isNaN(parseInt(to, 10))) {
+      throw new Error('Invalid number for for helper')
     }
+
+    if (to < from) {
+      throw new Error('Invalid range for for helper')
+    }
+
+    from = parseInt(from, 10)
+    to = parseInt(to, 10)
+
+    if (to - from >= maxIterations) {
+      to = Number(from) + maxIterations - 1
+    }
+
+    for (let index = from; index <= to; index++) {
+      output += options.fn(this, { data: { index } })
+    }
+
+    return output
   })
 }
+
+Handlebars.registerHelper('helperMissing', function (...args: any[]): string {
+  try {
+    const [{ name }] = args.concat().reverse()
+    return `${String(name)} helper is not available`
+  } catch (error) {
+    return error.message
+  }
+})
 
 export const registerHelper = Handlebars.registerHelper

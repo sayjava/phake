@@ -14,6 +14,13 @@ test('repeat', () => {
   expect(result).toMatchInlineSnapshot(`"index-0,index-1,index-2"`)
 })
 
+test('for', () => {
+  const result = compile({
+    template: '{{#for 1 3}} index-{{@index}} {{/for}}'
+  })
+  expect(result).toMatchInlineSnapshot(`" index-1  index-2  index-3 "`)
+})
+
 test('randomize', () => {
   const template =
     'My dogs\'s breed is {{randomize "german shepard" "golden retriever" "pug"}}'
