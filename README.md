@@ -178,15 +178,9 @@ The partial can then be referenced from other template files
 [Handlebar Helpers](https://handlebarsjs.com/guide/builtin-helpers.html) are
 also supported.
 
-| Helper    | Description                          | Example                                                     |
-| --------- | ------------------------------------ | ----------------------------------------------------------- |
-| repeat    | Repeat items                         | `{{#repeat 5}} index-{{@index}} {{/repeat}}`                |
-| randomize | Randomize an array                   | `{{randomize "german shepard" "golden retriever" "pug"}}`   |
-| setVar    | Register a variable to be used later | `{{#setVar 'myVar' 5 }}` then accessed later as `{{myVar}}` |
-
-## Examples
-
-See the examples folder for more advance use cases
-
-- [GitHub Sample Data](examples/github)
-- [Stripe Sample Data](examples/stripe)
+| Helper    | Description                                          | Example                                                     |
+| --------- | ---------------------------------------------------- | ----------------------------------------------------------- |
+| repeat    | Generates a comma separated list for creating arrays | `[{{#repeat 5}} index-{{@index}} {{/repeat}}]`              |
+| for       | Repeat items for the specified range                 | `{{#for 1 5}} index-{{@index}} {{/for}}`                    |
+| randomize | Randomize an array                                   | `{{randomize "german shepard" "golden retriever" "pug"}}`   |
+| setVar    | Register a variable to be used later                 | `{{#setVar 'myVar' 5 }}` then accessed later as `{{myVar}}` |

@@ -6,13 +6,12 @@ export default {
     link: 'https://github.com/sayjava/phake'
   },
   docsRepositoryBase: 'https://github.com/sayjava/phake/blob/main/packages/web',
-  useNextSeoProps () {
+  useNextSeoProps() {
     return {
-      titleTemplate: '%s – Phake'
+      titleTemplate: '%s – Fake Data Generator',
     }
   },
   head: () => {
-    const { route, locales, locale } = useRouter()
     const { frontMatter, title } = useConfig()
 
     return (
