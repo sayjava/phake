@@ -16,14 +16,15 @@ export const registerFilePartials = (partialsPath: string): void => {
   try {
     const entries = fs
       .readdirSync(partialsPath)
-      .filter((entry) => entry.includes('.partial'))
 
     for (const entry of entries) {
       const fullPath = path.join(partialsPath, entry)
-      if (!fs.statSync(fullPath).isDirectory()) {
-        registerPartial(fullPath)
-      } else {
+      if (fs.statSync(fullPath).isDirectory()) {
         registerFilePartials(fullPath)
+      } else {
+        if (entry.endsWith('.partial.hbs')) {
+          registerPartial(fullPath)
+        }
       }
     }
   } catch (error) {
