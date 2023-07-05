@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars'
-import { createHelpers } from './helpers'
+import './helpers'
 
 interface GenerateInterface {
   template: string
@@ -10,8 +10,7 @@ interface GenerateInterface {
 }
 
 export const compile = (gi: GenerateInterface): string => {
-  const { template, locale = 'en', context = {} } = gi
-  createHelpers({ locale })
+  const { template, context = {} } = gi
   return Handlebars.compile(template, { compat: true, preventIndent: false })({
     context
   })

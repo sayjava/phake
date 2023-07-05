@@ -32,7 +32,9 @@ import { generate } from './cmds/generate'
           }
         })
       },
-      (argv) => generate(argv as any)
+      (argv) => {
+        generate(argv as any)
+      }
     )
     .help().argv
 })()

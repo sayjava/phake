@@ -1,50 +1,54 @@
+/* eslint-disable */
 import Handlebars from 'handlebars'
 
-Handlebars.registerHelper('compare', function (lvalue: any, rvalue: any, options: any) {
+Handlebars.registerHelper(
+  'compare',
+  function (lvalue: any, rvalue: any, options: any) {
     if (arguments.length < 3) {
-        throw new Error('Handlerbars Helper "compare" needs 2 parameters')
+      throw new Error('Handlerbars Helper "compare" needs 2 parameters')
     }
-    
-    const operator = options.hash.operator || '=='
-    
+
+    const operator = options.hash.operator ?? '=='
+
     const operators: any = {
-        '==': function (l: any, r: any) {
+      '==': function (l: any, r: any) {
         return l == r
-        },
-        '===': function (l: any, r: any) {
+      },
+      '===': function (l: any, r: any) {
         return l === r
-        },
-        '!=': function (l: any, r: any) {
+      },
+      '!=': function (l: any, r: any) {
         return l != r
-        },
-        '<': function (l: any, r: any) {
+      },
+      '<': function (l: any, r: any) {
         return l < r
-        },
-        '>': function (l: any, r: any) {
+      },
+      '>': function (l: any, r: any) {
         return l > r
-        },
-        '<=': function (l: any, r: any) {
+      },
+      '<=': function (l: any, r: any) {
         return l <= r
-        },
-        '>=': function (l: any, r: any) {
+      },
+      '>=': function (l: any, r: any) {
         return l >= r
-        },
-        typeof: function (l: any, r: any) {
-        return typeof l == r
-        },
+      },
+      typeof: function (l: any, r: any) {
+        return typeof l === r
+      }
     }
-    
+
     if (!operators[operator]) {
-        throw new Error(
-        `Handlerbars Helper "compare" doesn't know the operator ${operator}`
-        )
+      throw new Error(
+        `Handlerbars Helper "compare" doesn't know the operator ${String(operator)}`
+      )
     }
-    
+
     const result = operators[operator](lvalue, rvalue)
-    
+
     if (result) {
-        return options.fn(this)
+      return options.fn(this)
     }
-    
+
     return options.inverse(this)
-})
+  }
+)

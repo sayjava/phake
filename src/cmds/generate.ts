@@ -40,6 +40,11 @@ export const generate = (
 ): void => {
   const { template, output, locale } = argv
   try {
+
+    if(!fs.existsSync(template)) {
+      throw new Error(`File or directory "${template}" does not exist`)
+    }
+
     if (fs.statSync(template).isFile()) {
       registerFilePartials(path.dirname(template))
       return generateFromFile({ filePath: template, output, locale })

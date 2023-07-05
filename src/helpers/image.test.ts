@@ -29,12 +29,12 @@ test('imageURL', () => {
 })
 
 test('imageURL custom color', () => {
-    const result = Handlebars.compile(`{{imageURL "boy" "#00000"}}`)({})
-    expect(result).toMatchInlineSnapshot(`"url_image"`)
-    expect(Geopattern.generate).toHaveBeenLastCalledWith('boy', {
-      baseColor: '#00000'
-    })
+  const result = Handlebars.compile(`{{imageURL "boy" "#00000"}}`)({})
+  expect(result).toMatchInlineSnapshot(`"url_image"`)
+  expect(Geopattern.generate).toHaveBeenLastCalledWith('boy', {
+    baseColor: '#00000'
   })
+})
 
 test('imageURI', () => {
   const result = Handlebars.compile(`{{imageURI "girl"}}`)({})

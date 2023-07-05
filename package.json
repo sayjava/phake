@@ -13,6 +13,7 @@
     "lint": "ts-standard",
     "test": "jest",
     "dev": "ts-node src/main.ts",
+    "gen:github": "ts-node src/main.ts compile -t ./fixtures/github.json.hbs",
     "build": "tsc",
     "release": "semantic-release",
     "prettify": "prettier --write --ignore-unknown src"

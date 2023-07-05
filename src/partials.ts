@@ -14,8 +14,7 @@ const registerPartial = (entry: string): void => {
 
 export const registerFilePartials = (partialsPath: string): void => {
   try {
-    const entries = fs
-      .readdirSync(partialsPath)
+    const entries = fs.readdirSync(partialsPath)
 
     for (const entry of entries) {
       const fullPath = path.join(partialsPath, entry)
