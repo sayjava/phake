@@ -14,7 +14,7 @@ Handlebars.registerHelper('faker', function (...args: any[]): any {
 
   const fakerLocale =
     locale === 'en' ? allFaker.en : [suppliedLocale, allFaker.en]
-  const fake = new allFaker.Faker({ locale: fakerLocale })
+  const fake = new allFaker.Faker({ locale: [fakerLocale, allFaker.base] as allFaker.LocaleDefinition[] })
   const fakeFunc = objectPath.get(fake, type)
   const [{ hash }, ...params] = rest.concat().reverse()
 
