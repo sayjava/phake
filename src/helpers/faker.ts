@@ -2,19 +2,12 @@ import Handlebars from 'handlebars'
 import * as allFaker from '@faker-js/faker'
 import objectPath from 'object-path'
 
-const locale = 'en'
-
+/**
+ * Handlebars helper to generate mock data using fakerjs.
+ */
+const fake = new allFaker.Faker({ locale: [allFaker.en, allFaker.base] as allFaker.LocaleDefinition[] })
 Handlebars.registerHelper('faker', function (...args: any[]): any {
   const [type, ...rest] = args
-  const suppliedLocale = allFaker[locale]
-
-  if (suppliedLocale === undefined) {
-    throw new Error(`${locale} is not supported by FakerJS`)
-  }
-
-  const fakerLocale =
-    locale === 'en' ? allFaker.en : [suppliedLocale, allFaker.en]
-  const fake = new allFaker.Faker({ locale: [fakerLocale, allFaker.base] as allFaker.LocaleDefinition[] })
   const fakeFunc = objectPath.get(fake, type)
   const [{ hash }, ...params] = rest.concat().reverse()
 

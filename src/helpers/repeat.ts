@@ -1,5 +1,8 @@
 import Handlebars from 'handlebars'
 
+/**
+ * Repeat a section a number of times.
+ */
 Handlebars.registerHelper('repeat', function (count: number, options: any) {
   const MAX_COUNT = 100000
   if (Number.isNaN(count)) {

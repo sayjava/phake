@@ -2,6 +2,9 @@ import Handlebars from 'handlebars'
 import fs from 'node:fs'
 import path from 'node:path'
 
+/**
+ * Inject a partial into the current template.
+ */
 Handlebars.registerHelper('inject', function (file: string, options: any) {
   if (file === undefined) {
     throw new Error('Helper Inject requires a file')

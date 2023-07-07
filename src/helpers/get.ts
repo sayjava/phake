@@ -54,6 +54,9 @@ const getValue = (object: any, path: string): any => {
   return result
 }
 
+/**
+ * Get a value from an object using its path.
+ */
 Handlebars.registerHelper('get', function (path, context) {
   const options = arguments[arguments.length - 1]
   const value = getValue(context.data.root, path)

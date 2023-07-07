@@ -1,5 +1,8 @@
 import Handlebars from 'handlebars'
 
+/**
+ * Handlebars helper to repeat a block of code.
+ */
 Handlebars.registerHelper('for', function (from: any, to: any) {
   const options = arguments[arguments.length - 1]
   const maxIterations = 100

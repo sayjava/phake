@@ -1,6 +1,9 @@
 /* eslint-disable */
 import Handlebars from 'handlebars'
 
+/**
+ * Handlebars helper to compare two values.
+ */
 Handlebars.registerHelper(
   'compare',
   function (lvalue: any, rvalue: any, options: any) {
