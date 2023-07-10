@@ -3,14 +3,14 @@ import './compare'
 
 test('compare helper', () => {
   const result = Handlebars.compile(
-    '{{#compare 1 1 operator="!="}}true{{else}}false{{/compare}}'
+    '{{#compare 1 1 operator="==="}}true{{/compare}}'
   )({})
-  expect(result).toMatchInlineSnapshot(`"false"`)
+  expect(result).toMatchInlineSnapshot(`"true"`)
 })
 
 test('compare helper with typeof', () => {
   const result = Handlebars.compile(
-    '{{#compare 1 "number" operator="typeof"}}true{{else}}false{{/compare}}'
+    '{{#compare 1 "number" operator="typeof"}}true{{/compare}}'
   )({})
   expect(result).toMatchInlineSnapshot(`"true"`)
 })

@@ -178,9 +178,13 @@ The partial can then be referenced from other template files
 [Handlebar Helpers](https://handlebarsjs.com/guide/builtin-helpers.html) are
 also supported.
 
-| Helper    | Description                                          | Example                                                     |
-| --------- | ---------------------------------------------------- | ----------------------------------------------------------- |
-| repeat    | Generates a comma separated list for creating arrays | `[{{#repeat 5}} index-{{@index}} {{/repeat}}]`              |
-| for       | Repeat items for the specified range                 | `{{#for 1 5}} index-{{@index}} {{/for}}`                    |
-| randomize | Randomize an array                                   | `{{randomize "german shepard" "golden retriever" "pug"}}`   |
-| setVar    | Register a variable to be used later                 | `{{#setVar 'myVar' 5 }}` then accessed later as `{{myVar}}` |
+| Helper      | Description                                                       | Example                                                   | options                                                                       |
+| ----------- | ----------------------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| repeat      | Generates a comma separated list for creating arrays              | `[{{#repeat 5}} index-{{@index}} {{/repeat}}]`            | `number` Iteration count                                                      |
+| for         | Repeat items for the specified range                              | `{{#for 1 5}} index-{{@index}} {{/for}}`                  | `number` Iteration count                                                      |
+| randomize   | Randomize an array                                                | `{{randomize "german shepard" "golden retriever" "pug"}}` | `values` to be randomized                                                     |
+| var         | Register a variable to be used later                              | `{{#var 'myVar' 5 }}` then accessed later as `{{myVar}}`  | `name` of the variable, `value` of the variable                               |
+| imageURI    | Generate a URI encoded random patterned image using a seed string | `{{imageURI    'seedString'  }}`                          | `string` to use to seed the generated pattern, `color` to use for the pattern |
+| imageURL    | Generate a URL encoded random patterned image using a seed string | `{{imageURL    'seedString' #00FF00 }}`                   | `string` to use to seed the generated pattern, `color` to use for the pattern |
+| imageSVG    | Generate a SVG random patterned image using a seed string         | `{{imageSVG    'seedString'  }}`                          | `string` to use to seed the generated pattern, `color` to use for the pattern |
+| imageBase64 | Generate a base64 encoded random patterned image                  | `{{imageBase64 'seedString' }}`                           | `string` to use to seed the generated pattern, `color` to use for the pattern |

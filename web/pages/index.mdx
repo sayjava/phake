@@ -30,7 +30,7 @@ Here is a sample template showcasing the integration of FakerJS and Handlebars t
     "open_issues_count": {{faker 'number.int' max=50}},
     "is_template": {{randomize false true}},
     "description": "{{faker 'lorem.sentences' max=3}}",
-   "topics": [
+    "topics": [
         {{#repeat 5}}
             "{{faker 'string.alpha' 5}}"
         {{/repeat}}
