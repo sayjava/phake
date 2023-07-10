@@ -3,13 +3,15 @@ import './nl'
 
 test('nlbr', () => {
   const result = Handlebars.compile(`
-        <p>{{nlbr "This is a paragraph."}}</p>
-        <p>{{nlbr "This is a paragraph." "This is another paragraph."}}</p>
+        {
+          "message": {{{nlbr "This is a paragraph.\nThis is another paragraph.\nThis is a third paragraph."}}}
+        }
     `)({})
-  expect(result).toMatchInlineSnapshot(`
-    "
-            <p>This is a paragraph.</p>
-            <p>This is a paragraph.</p>
-        "
+  expect(JSON.parse(result)).toMatchInlineSnapshot(`
+    {
+      "message": "This is a paragraph
+    This is another paragraph
+    This is a third paragraph.",
+    }
   `)
 })
