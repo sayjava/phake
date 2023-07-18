@@ -1,39 +1,28 @@
 import Handlebars from 'handlebars'
-import GeoPattern from 'geopattern'
+import trianglify from 'trianglify'
 
-const DEFAULT_COLOR = '#933c3c'
+const generateSVG = ({ seed }: { seed: string }): string => {
+  const svg = trianglify({
+    width: 1200,
+    height: 800,
+    cellSize: 125,
+    seed,
+    yColors: 'match'
+  }).toSVGTree().toString()
+
+  return Buffer.from(svg).toString('base64')
+}
 
 /**
  * Generate a pattern image from a string.
  */
 Handlebars.registerHelper('imageURL', function (text: string, ...args: any[]) {
-  const [, baseColor = DEFAULT_COLOR] = args.concat().reverse()
-  return GeoPattern.generate(text, { baseColor }).toDataUrl()
+  return `url("data:image/svg+xml;base64,${generateSVG({ seed: text })}")`
 })
 
 /**
  * Generate a pattern image from a string.
  */
 Handlebars.registerHelper('imageURI', function (text: string, ...args: any[]) {
-  const [, baseColor = DEFAULT_COLOR] = args.concat().reverse()
-  return GeoPattern.generate(text, { baseColor }).toDataUri()
+  return `data:image/svg+xml;base64,${generateSVG({ seed: text })}`
 })
-
-/**
- * Generate a pattern image from a string.
- */
-Handlebars.registerHelper('imageSVG', function (text: string, ...args: any[]) {
-  const [, baseColor = DEFAULT_COLOR] = args.concat().reverse()
-  return GeoPattern.generate(text, { baseColor }).toSvg()
-})
-
-/**
- * Generate a pattern image from a string.
- */
-Handlebars.registerHelper(
-  'imageBase64',
-  function (text: string, ...args: any[]) {
-    const [, baseColor = DEFAULT_COLOR] = args.concat().reverse()
-    return GeoPattern.generate(text, { baseColor }).toBase64()
-  }
-)

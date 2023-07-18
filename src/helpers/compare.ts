@@ -42,7 +42,7 @@ Handlebars.registerHelper(
 
     if (!operators[operator]) {
       throw new Error(
-        `Handlerbars Helper "compare" doesn't know the operator ${String(operator)}`
+        `Handlebars Helper "compare" doesn't know the operator ${String(operator)}`
       )
     }
 

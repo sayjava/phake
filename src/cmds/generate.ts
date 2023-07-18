@@ -40,8 +40,7 @@ export const generate = (
 ): void => {
   const { template, output, locale } = argv
   try {
-
-    if(!fs.existsSync(template)) {
+    if (!fs.existsSync(template)) {
       throw new Error(`File or directory "${template}" does not exist`)
     }
 

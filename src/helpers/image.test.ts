@@ -1,61 +1,41 @@
 import Handlebars from 'handlebars'
-import Geopattern from 'geopattern'
+import trianglify from 'trianglify'
 import './image'
 
-const toDataUrl = jest.fn(() => 'url_image')
-const toDataUri = jest.fn(() => 'uri_image')
 const toSvg = jest.fn(() => 'svg_image')
-const toBase64 = jest.fn(() => 'base64_image')
 
-jest.mock('geopattern', () => {
-  return {
-    generate: jest.fn(() => {
-      return {
-        toDataUrl,
-        toDataUri,
-        toSvg,
-        toBase64
-      }
-    })
-  }
+jest.mock('trianglify', () => {
+  return jest.fn(() => {
+    return {
+      toSVGTree: toSvg
+    }
+  })
 })
 
 test('imageURL', () => {
   const result = Handlebars.compile(`{{imageURL "boy"}}`)({})
-  expect(result).toMatchInlineSnapshot(`"url_image"`)
-  expect(Geopattern.generate).toHaveBeenLastCalledWith('boy', {
-    baseColor: '#933c3c'
-  })
-})
-
-test('imageURL custom color', () => {
-  const result = Handlebars.compile(`{{imageURL "boy" "#00000"}}`)({})
-  expect(result).toMatchInlineSnapshot(`"url_image"`)
-  expect(Geopattern.generate).toHaveBeenLastCalledWith('boy', {
-    baseColor: '#00000'
+  expect(result).toMatchInlineSnapshot(
+    `"url(&quot;data:image/svg+xml;base64,c3ZnX2ltYWdl&quot;)"`
+  )
+  expect(trianglify).toHaveBeenLastCalledWith({
+    cellSize: 125,
+    height: 800,
+    seed: 'boy',
+    width: 1200,
+    yColors: 'match'
   })
 })
 
 test('imageURI', () => {
-  const result = Handlebars.compile(`{{imageURI "girl"}}`)({})
-  expect(result).toMatchInlineSnapshot(`"uri_image"`)
-  expect(Geopattern.generate).toHaveBeenLastCalledWith('girl', {
-    baseColor: '#933c3c'
-  })
-})
-
-test('imageSVG', () => {
-  const result = Handlebars.compile(`{{imageSVG "man"}}`)({})
-  expect(result).toMatchInlineSnapshot(`"svg_image"`)
-  expect(Geopattern.generate).toHaveBeenLastCalledWith('man', {
-    baseColor: '#933c3c'
-  })
-})
-
-test('imageBase64', () => {
-  const result = Handlebars.compile(`{{imageBase64 "woman"}}`)({})
-  expect(result).toMatchInlineSnapshot(`"base64_image"`)
-  expect(Geopattern.generate).toHaveBeenLastCalledWith('woman', {
-    baseColor: '#933c3c'
+  const result = Handlebars.compile(`{{imageURI "man"}}`)({})
+  expect(result).toMatchInlineSnapshot(
+    `"data:image/svg+xml;base64,c3ZnX2ltYWdl"`
+  )
+  expect(trianglify).toHaveBeenLastCalledWith({
+    cellSize: 125,
+    height: 800,
+    seed: 'man',
+    width: 1200,
+    yColors: 'match'
   })
 })
